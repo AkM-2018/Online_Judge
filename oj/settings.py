@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'online_judge',
     'authentication',
-    'django_ace'
+    'django_ace',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
