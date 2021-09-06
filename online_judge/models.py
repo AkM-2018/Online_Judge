@@ -12,6 +12,7 @@ class Problem(models.Model):
 
 
 class Solution(models.Model):
+    submitted_code = models.FileField(upload_to='submissions/')
     problem = models.ForeignKey(Problem, on_delete=models.CASCADE)
     verdict = models.CharField(max_length=255)
     submitted_at = models.DateTimeField(auto_now_add=True, blank=True)

@@ -23,7 +23,8 @@
     Language: &nbsp;
     <label for="python"><input type="radio" name="language" id="python" value="python" checked="checked">Python</label> &nbsp;
     <label for="cpp"><input type="radio" name="language" id="c_cpp" value="c_cpp">cpp</label>
-    <button class="float-right mr-3 btn btn-sm" id="copy">Copy</button>
+    <button class="float-right mr-3 btn btn-sm" id="copy" onclick="copyToClipboard(editor.getValue())">Copy</button>
+    <a href="{% url 'submit-solution' problem.id %}" >Add submission</a>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.5/ace.js" type="text/javascript" charset="utf-8"></script>
@@ -33,18 +34,14 @@
     function setEditor() {
         editor = ace.edit("editor");
         editor.setTheme("ace/theme/monokai");
-        // editor.session.setMode("ace/mode/python");
         editor.session.setMode("ace/mode/" + lang);
         document.getElementById('editor').style.fontSize='20px';
     }
 
     function copyToClipboard(text) {
-        var dummy = document.createElement("textarea");
-        // to avoid breaking orgain page when copying more words
-        // cant copy when adding below this code
-        // dummy.style.display = 'none'
+        console.log('hello');
+        let dummy = document.createElement("textarea");
         document.body.appendChild(dummy);
-        //Be careful if you use texarea. setAttribute('value', value), which works with "input" does not work with "textarea". – Eduard
         dummy.value = text;
         dummy.select();
         document.execCommand("copy");
@@ -53,20 +50,13 @@
 
     setEditor();
 
+    // $('#python').click(function () {
+    //     lang = 'python';
+    //     setEditor();
+    // });
 
-    $('#python').click(function () {
-        lang = 'python';
-        setEditor();
-    });
-
-    $('#c_cpp').click(function() {
-        lang = 'c_cpp';
-        setEditor();
-    });
-
-    $('#copy').click(function() {
-        copyToClipboard(editor.getValue());
-    });
-
-
+    // $('#c_cpp').click(function() {
+    //     lang = 'c_cpp';
+    //     setEditor();
+    // });
 </script>
